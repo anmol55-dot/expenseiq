@@ -332,11 +332,15 @@
 
 .quick-stats-grid,
 .dashboard-grid,
-.budget-grid,
-.profile-grid {
+.budget-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 22px;
+}
+
+.profile-panel {
+  display: grid;
+  max-width: 620px;
 }
 
 .quick-stat {
@@ -373,7 +377,6 @@
 .budget-card,
 .tips-card,
 .profile-card,
-.about-card,
 .analytics-grid {
   padding: 22px;
 }
@@ -451,16 +454,14 @@ select:focus {
 }
 
 .recent-list,
-.tip-list,
-.about-list {
+.tip-list {
   margin-top: 18px;
   display: grid;
   gap: 12px;
 }
 
 .recent-item,
-.tip-list div,
-.about-list div {
+.tip-list div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -472,8 +473,7 @@ select:focus {
 }
 
 .app.dark .recent-item,
-.app.dark .tip-list div,
-.app.dark .about-list div {
+.app.dark .tip-list div {
   background: rgba(15, 23, 42, 0.52);
 }
 
@@ -648,13 +648,11 @@ th {
   background: #fee2e2;
 }
 
-.tip-list div,
-.about-list div {
+.tip-list div {
   justify-content: flex-start;
 }
 
-.tip-list svg,
-.about-list svg {
+.tip-list svg {
   color: var(--green-dark);
   flex: 0 0 auto;
 }
@@ -692,7 +690,6 @@ th {
   .dashboard-grid,
   .analytics-grid,
   .budget-grid,
-  .profile-grid,
   .quick-stats-grid,
   .transaction-controls {
     grid-template-columns: 1fr;
@@ -767,7 +764,6 @@ th {
   .budget-card,
   .tips-card,
   .profile-card,
-  .about-card,
   .welcome-card {
     padding: 17px;
     border-radius: 18px;
