@@ -2,11 +2,6 @@
 
 ### A modern expense tracker and budget planner built with React JS
 
-![React](https://img.shields.io/badge/React-JS-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-Build%20Tool-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![Recharts](https://img.shields.io/badge/Recharts-Analytics-22c55e?style=for-the-badge)
-![LocalStorage](https://img.shields.io/badge/Storage-localStorage-f59e0b?style=for-the-badge)
-
 ## 📌 Project Description
 
 **ExpenseIQ** is a frontend-only Expense Tracker and Budget Planner web app made using **React JS**. It helps users add daily expenses, view transaction history, understand spending patterns with charts, and manage a monthly budget.
@@ -109,7 +104,7 @@ The project flow is simple:
 
 This makes the app feel like a real expense tracker without needing a backend.
 
-## 🧠 Main React Concepts Used
+##  Main React Concepts Used
 
 ### Components
 
@@ -147,59 +142,4 @@ Events are used for adding expenses, deleting transactions, updating filters, se
 ### Mapping Lists
 
 The project uses `.map()` to display expenses, categories, summary cards, tips, and chart data.
-
-## 🧩 Challenges Faced
-
-Some parts were a bit tricky while building this project:
-
-- Managing expenses across different pages without making the code too complicated
-- Keeping localStorage synchronized with React state
-- Updating charts automatically whenever expenses change
-- Making search, filter, and sort work together on the transactions page
-- Designing a responsive dashboard layout for both laptop and mobile screens
-- Making the UI look modern while still keeping the code readable
-
-## 📸                        Screenshots
-
-Add your project screenshots here after running the app.
-
-### Dashboard
-
-![Dashboard Screenshot](./screenshots/dashboard.png)
-
-### Transactions Page
-
-![Transactions Screenshot](./screenshots/transactions.png)
-
-### Budget Planner
-
-![Budget Planner Screenshot](./screenshots/budget-planner.png)
-
-### Dark Mode
-
-![Dark Mode Screenshot](./screenshots/dark-mode.png)
-
-## 🔮 Future Improvements
-
-- Add backend integration
-- Add user authentication
-- Store data in a cloud database
-- Add edit transaction feature
-- Export expense reports as CSV or PDF
-- Add monthly spending goals
-- Add AI-based expense insights
-- Add better date range filters
-- Add profile customization
-
-## 🤝 Contribution
-
-This is mainly a student learning project, but suggestions and improvements are welcome.
-       
-If you want to contribute:
-
-1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Submit a pull request
-
 
