@@ -1,4 +1,4 @@
-import { FiBell, FiMoon, FiSearch, FiSun } from 'react-icons/fi'
+import { FiBell, FiMoon, FiSun } from 'react-icons/fi'
 import { useExpenses } from '../context/ExpenseContext'
 
 function Navbar() {
@@ -12,11 +12,6 @@ function Navbar() {
       </div>
 
       <div className="nav-actions">
-        <div className="search-box">
-          <FiSearch />
-          <span>Search expenses</span>
-        </div>
-
         <button className="icon-button" type="button" aria-label="Notifications">
           <FiBell />
         </button>

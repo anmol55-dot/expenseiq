@@ -159,7 +159,6 @@
   gap: 12px;
 }
 
-.search-box,
 .icon-button,
 .theme-toggle,
 .card,
@@ -167,16 +166,6 @@
   border: 1px solid var(--line);
   background: var(--panel);
   backdrop-filter: blur(18px);
-}
-
-.search-box {
-  width: 230px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  color: var(--muted);
-  border-radius: 15px;
 }
 
 .icon-button,
@@ -519,32 +508,8 @@ select:focus {
 
 .transaction-controls {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr 0.8fr;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: 14px;
-}
-
-.search-input {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.74);
-  border-radius: 14px;
-  padding: 0 13px;
-}
-
-.app.dark .search-input {
-  background: rgba(15, 23, 42, 0.7);
-}
-
-.search-input input {
-  border: 0;
-  background: transparent;
-  padding-left: 0;
-}
-
-.search-input input:focus {
-  box-shadow: none;
 }
 
 .list-header {
@@ -773,7 +738,6 @@ th {
   }
 
   .nav-actions,
-  .search-box,
   .welcome-balance {
     width: 100%;
   }

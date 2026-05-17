@@ -1,27 +1,33 @@
 import { useState } from 'react'
-import { FiSearch } from 'react-icons/fi'
-import ExpenseTable from '../components/ExpenseTable'
+import { FiTrash2 } from 'react-icons/fi'
 import { useExpenses } from '../context/ExpenseContext'
-import { categories } from '../data/categories'
+import { categories, categoryColors } from '../data/categories'
 
 function Transactions() {
   const { expenses, deleteExpense } = useExpenses()
-  const [searchText, setSearchText] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('date-new')
 
-  const filteredExpenses = expenses
+  const expenseList = Array.isArray(expenses) ? expenses : []
+
+  const visibleExpenses = expenseList
     .filter((expense) => {
-      const titleMatches = expense.title.toLowerCase().includes(searchText.toLowerCase())
-      const categoryMatches = selectedCategory === 'All' || expense.category === selectedCategory
-      return titleMatches && categoryMatches
+      return selectedCategory === 'All' || expense.category === selectedCategory
     })
     .sort((a, b) => {
-      if (sortBy === 'amount-high') return b.amount - a.amount
-      if (sortBy === 'amount-low') return a.amount - b.amount
+      if (sortBy === 'amount-high') return Number(b.amount) - Number(a.amount)
+      if (sortBy === 'amount-low') return Number(a.amount) - Number(b.amount)
       if (sortBy === 'date-old') return new Date(a.date) - new Date(b.date)
       return new Date(b.date) - new Date(a.date)
     })
+
+  function getExpenseTitle(expense) {
+    return expense.title || expense.name || 'Untitled expense'
+  }
+
+  function getExpenseCategory(expense) {
+    return expense.category || 'Other'
+  }
 
   return (
     <div className="page fade-in">
@@ -33,16 +39,6 @@ function Transactions() {
       </section>
 
       <section className="card transaction-controls">
-        <div className="search-input">
-          <FiSearch />
-          <input
-            type="text"
-            placeholder="Search by title..."
-            value={searchText}
-            onChange={(event) => setSearchText(event.target.value)}
-          />
-        </div>
-
         <select value={selectedCategory} onChange={(event) => setSelectedCategory(event.target.value)}>
           <option value="All">All Categories</option>
           {categories.map((category) => (
@@ -64,11 +60,65 @@ function Transactions() {
         <div className="list-header">
           <div className="section-title">
             <h3>All Transactions</h3>
-            <p>{filteredExpenses.length} transactions found</p>
+            <p>{visibleExpenses.length} transactions shown</p>
           </div>
         </div>
 
-        <ExpenseTable expenses={filteredExpenses} onDeleteExpense={deleteExpense} />
+        {visibleExpenses.length === 0 ? (
+          <div className="empty-state">
+            <div className="empty-icon">₹</div>
+            <h3>No transactions found</h3>
+            <p>Try changing the category filter or add a new expense from the dashboard.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Expense</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {visibleExpenses.map((expense) => {
+                  const expenseTitle = getExpenseTitle(expense)
+                  const expenseCategory = getExpenseCategory(expense)
+                  const expenseAmount = Number(expense.amount) || 0
+
+                  return (
+                    <tr key={expense.id}>
+                      <td>
+                        <div className="transaction-name">
+                          <span
+                            style={{ backgroundColor: categoryColors[expenseCategory] || categoryColors.Other }}
+                          ></span>
+                          <strong>{expenseTitle}</strong>
+                        </div>
+                      </td>
+                      <td>{expenseCategory}</td>
+                      <td>{new Date(expense.date).toLocaleDateString('en-IN')}</td>
+                      <td className="amount-cell">₹{expenseAmount.toLocaleString('en-IN')}</td>
+                      <td>
+                        <button
+                          className="delete-button"
+                          type="button"
+                          onClick={() => deleteExpense(expense.id)}
+                          aria-label={`Delete ${expenseTitle}`}
+                        >
+                          <FiTrash2 />
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
     </div>
   )
